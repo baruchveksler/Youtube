@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -385,6 +381,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:11px 20px;border-radius:24px;font-size:13px;z-index:400;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
 
+/* PROFILE */
+.taste-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.taste-bar-label{font-size:13px;color:var(--text);width:110px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.taste-bar-track{flex:1;height:10px;background:var(--bg3);border-radius:5px;overflow:hidden}
+.taste-bar-fill{height:100%;border-radius:5px;transition:width 0.6s ease;background:linear-gradient(90deg,var(--red),#ff8c00)}
+.taste-bar-pct{font-size:12px;color:var(--muted);width:36px;text-align:right;flex-shrink:0}
+.prof-channel-pill{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:6px 12px 6px 6px;cursor:pointer;transition:border-color 0.15s}
+.prof-channel-pill:hover{border-color:var(--accent)}
+.prof-channel-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.prof-channel-name{font-size:13px;font-weight:500;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prof-channel-count{font-size:11px;color:var(--muted)}
+.prof-stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center}
+.prof-stat-n{font-size:22px;font-weight:700;margin-bottom:4px}
+.prof-stat-l{font-size:12px;color:var(--muted)}
+.recent-row{display:flex;align-items:center;gap:10px;padding:8px;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;margin-bottom:2px}
+.recent-row:hover{background:var(--bg3)}
+.recent-thumb{width:80px;aspect-ratio:16/9;border-radius:6px;background:var(--bg3);overflow:hidden;flex-shrink:0}
+.recent-thumb img{width:100%;height:100%;object-fit:cover}
+.recent-info{flex:1;min-width:0}
+.recent-title{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.because-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(255,45,45,0.1);border:1px solid rgba(255,45,45,0.2);color:#ff8888;font-size:10px;padding:2px 7px;border-radius:10px;margin-top:3px}
+
 @media(max-width:1000px){.sidebar{display:none}.main{margin-left:0}.bottom-nav{display:block}.app{padding-bottom:60px}.watch-layout{flex-direction:column;padding:12px}.watch-sidebar{width:100%}.scroll-panel{width:240px}.short-side{right:8px;bottom:100px}}
 @media(max-width:640px){.video-grid{grid-template-columns:1fr;padding:10px}.search-wrap{max-width:none}.scroll-panel{display:none}.scroll-arrows{right:12px}.sr-thumb{width:140px}.ch-header{flex-wrap:wrap}}
 </style>
@@ -438,6 +457,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
   <aside class="sidebar">
     <div class="si active" id="si-home" onclick="goHome();setSA('si-home')"><span class="si-icon">&#9962;</span>Home</div>
     <div class="si" id="si-subs" onclick="loadSubsFeed();setSA('si-subs')" style="display:none"><span class="si-icon">&#128249;</span>My Feed</div>
+    <div class="si" id="si-profile" onclick="showProfile();setSA('si-profile')"><span class="si-icon">&#129428;</span>My Profile</div>
     <div class="si" onclick="loadForYou();setSA(this)"><span class="si-icon">&#127775;</span>For You</div>
     <div class="si" onclick="loadNewToYou();setSA(this)"><span class="si-icon">&#128161;</span>New to You</div>
     <div class="si" onclick="loadLive();setSA(this)"><span class="si-icon">&#128308;</span>Live</div>
@@ -626,6 +646,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
       <div id="search-results"></div>
       <div style="text-align:center;padding:16px;display:none" id="sr-load-more">
         <button class="load-more-btn" onclick="searchMore()">Load more</button>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="page-profile" style="display:none;padding:24px 20px;max-width:900px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+        <div style="font-size:48px">&#129428;</div>
+        <div>
+          <div style="font-size:22px;font-weight:700" id="prof-username">Your GoaTube Profile</div>
+          <div style="font-size:13px;color:var(--muted)" id="prof-sub">Built from your watch history</div>
+        </div>
+        <button class="load-more-btn" style="margin-left:auto;font-size:12px" onclick="clearHistory()">&#128465; Reset profile</button>
+      </div>
+
+      <!-- TASTE BARS -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px">
+        <div style="font-size:15px;font-weight:600;margin-bottom:14px">&#127775; Your taste profile</div>
+        <div id="prof-taste-bars"></div>
+        <div id="prof-empty-taste" style="display:none;font-size:13px;color:var(--muted)">Watch some videos first — your taste profile builds automatically.</div>
+      </div>
+
+      <!-- TOP CHANNELS -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px">
+        <div style="font-size:15px;font-weight:600;margin-bottom:14px">&#128249; Channels you watch most</div>
+        <div id="prof-top-channels" style="display:flex;flex-wrap:wrap;gap:10px"></div>
+        <div id="prof-empty-channels" style="display:none;font-size:13px;color:var(--muted)">No channel data yet.</div>
+      </div>
+
+      <!-- STATS ROW -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px" id="prof-stats-grid"></div>
+
+      <!-- RECENTLY WATCHED -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px">
+        <div style="font-size:15px;font-weight:600;margin-bottom:14px">&#128336; Recently watched</div>
+        <div id="prof-recent"></div>
+      </div>
+
+      <!-- RECOMMENDED FOR YOU -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-size:15px;font-weight:600">&#127919; Recommended just for you</div>
+          <button class="refresh-btn" onclick="loadProfileRecs()">&#8635; Refresh</button>
+        </div>
+        <div class="video-grid" id="prof-recs-grid" style="padding:0"></div>
       </div>
     </div>
 
@@ -1607,12 +1671,25 @@ function saveCountry(v){country=v;localStorage.setItem('gt_country',v);showToast
 // HOME / CAT BAR
 // ═══════════════════════════════════════════════
 function buildCatBar(){
-  const cats=['Trending',...(connectedChannels.length?['My Feed']:[]),'For You','New to You','Live','Games',...prefs,'Music','Science','Technology','Education','Sports'];
-  const unique=[...new Set(cats)].slice(0,18);
+  const hasDHistory=watchHistory.length>2;
+  const cats=[
+    'Trending',
+    ...(connectedChannels.length?['My Feed']:[]),
+    ...(hasDHistory?['Smart Feed']:[]),
+    'For You',
+    'New to You',
+    'Live',
+    'Games',
+    ...(hasDHistory?['My Profile']:[]),
+    ...prefs,
+    'Music','Science','Technology','Education','Sports'
+  ];
+  const unique=[...new Set(cats)].slice(0,20);
   document.getElementById('cat-bar').innerHTML=unique.map((c,i)=>{
-    const fn=c==='My Feed'?'loadSubsFeed':c==='For You'?'loadForYou':c==='New to You'?'loadNewToYou':c==='Live'?'loadLive':c==='Games'?'loadGames':'loadCat';
+    const fn=c==='My Feed'?'loadSubsFeed':c==='For You'?'loadForYou':c==='New to You'?'loadNewToYou':c==='Live'?'loadLive':c==='Games'?'loadGames':c==='Smart Feed'?'loadSmartFeed':c==='My Profile'?'showProfile':'loadCat';
     const live=c==='Live'?'live-chip ':'';
-    return`<button class="cat-chip ${live}${i===0?'active':''}" onclick="${fn}('${c}',this)">${c==='Live'?'&#128308; '+c:c}</button>`;
+    const icon=c==='Live'?'&#128308; ':c==='Smart Feed'?'&#127919; ':c==='My Profile'?'&#129428; ':c==='For You'?'&#127775; ':c==='My Feed'?'&#128249; ':'';
+    return`<button class="cat-chip ${live}${i===0?'active':''}" onclick="${fn}('${c}',this)">${icon}${c}</button>`;
   }).join('');
 }
 
@@ -1644,40 +1721,195 @@ async function loadSubsFeed(){
   if(!all.length)g.innerHTML+='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">No videos found. Try adding more channels.</div>';
 }
 
-async function loadForYou(){
-  if(!prefs.length){openPrefModal();return;}
-  currentCategory='ForYou';showPage('page-home');
+// ═══════════════════════════════════════════════
+// PERSONALIZATION ENGINE
+// ═══════════════════════════════════════════════
+function buildProfile(){
+  const catCount={},channelCount={},channelNames={};
+  watchHistory.forEach((h,i)=>{
+    const w=Math.max(1,watchHistory.length-i);
+    if(h.cat&&h.cat!=='Trending'&&h.cat!=='ForYou'&&h.cat!=='Smart')catCount[h.cat]=(catCount[h.cat]||0)+w;
+    if(h.channelId){channelCount[h.channelId]=(channelCount[h.channelId]||0)+w;if(h.channelName)channelNames[h.channelId]=h.channelName;}
+  });
+  prefs.forEach(p=>{catCount[p]=(catCount[p]||0)+5;});
+  const sortedCats=Object.entries(catCount).sort((a,b)=>b[1]-a[1]);
+  const sortedChannels=Object.entries(channelCount).sort((a,b)=>b[1]-a[1]);
+  const total=Object.values(catCount).reduce((a,b)=>a+b,0)||1;
+  return{
+    topCats:sortedCats.slice(0,8).map(([cat,count])=>({cat,pct:Math.round((count/total)*100)})),
+    topChannels:sortedChannels.slice(0,8).map(([id,count])=>({id,count,name:channelNames[id]||'?'})),
+    catCount,channelCount,channelNames,total
+  };
+}
+
+function pickSmartQuery(profile,exclude=[]){
+  const cats=profile.topCats.filter(c=>!exclude.includes(c.cat));
+  if(!cats.length)return prefs[0]||'trending';
+  const pool=[];
+  cats.forEach(({cat,pct})=>{for(let i=0;i<Math.max(1,Math.round(pct/10));i++)pool.push(cat);});
+  return pool[Math.floor(Math.random()*pool.length)]||cats[0].cat;
+}
+
+async function loadSmartFeed(cat,btn){
+  if(btn?.classList){document.querySelectorAll('.cat-chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  const profile=buildProfile();
+  if(!profile.topCats.length){loadCat('Trending');return;}
+  currentCategory='Smart';nextPageToken='';
+  showPage('page-home');
   document.getElementById('video-grid').innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
-  const hist=watchHistory.slice(0,15).map(h=>h.cat).filter(Boolean);
-  const pool=[...prefs,...prefs,...hist];
-  const pick=pool[Math.floor(Math.random()*pool.length)];
-  const data=await ytSearch(pick+' popular',24);
-  if(data.error){document.getElementById('video-grid').innerHTML=`<div class="error-box">${esc(data.error)}</div>`;return;}
-  nextPageToken=data.nextPageToken||'';
-  renderGrid(data.items.filter(i=>!isNI(i.id,i.snippet?.channelId)),false,true,pick);
+  const top3=profile.topCats.slice(0,3).map(c=>c.cat);
+  const results=await Promise.all(top3.map(c=>ytSearch(c+' popular',9)));
+  let all=[];
+  results.forEach((r,i)=>{if(r.items)all=[...all,...r.items.map(item=>({...item,_reason:top3[i]}))];});
+  const seen=new Set();
+  all=all.filter(i=>{if(seen.has(i.id)||isNI(i.id,i.snippet?.channelId))return false;seen.add(i.id);return true;});
+  all=all.sort(()=>Math.random()-0.5);
+  const g=document.getElementById('video-grid');g.innerHTML='';
+  const badge=document.createElement('div');badge.className='feed-badge';
+  badge.innerHTML=`&#127919; Smart feed — <strong>${top3.join(', ')}</strong>`;
+  g.appendChild(badge);
+  all.forEach(item=>{if(item.id)appendCard(item,g,false,item._reason);});
+  if(!all.length)g.innerHTML+='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">Watch some videos first to build your smart feed!</div>';
+}
+
+async function loadForYou(){
+  if(!prefs.length&&!watchHistory.length){openPrefModal();return;}
+  const profile=buildProfile();
+  currentCategory='ForYou';nextPageToken='';
+  showPage('page-home');
+  document.getElementById('video-grid').innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
+  const q1=pickSmartQuery(profile);
+  const q2=pickSmartQuery(profile,[q1]);
+  const [r1,r2]=await Promise.all([ytSearch(q1+' popular',16),ytSearch(q2,10)]);
+  let all=[...(r1.items||[]).map(i=>({...i,_reason:q1})),...(r2.items||[]).map(i=>({...i,_reason:q2}))];
+  const seen=new Set();
+  all=all.filter(i=>{if(seen.has(i.id)||isNI(i.id,i.snippet?.channelId))return false;seen.add(i.id);return true;});
+  all=all.sort(()=>Math.random()-0.5);
+  nextPageToken=r1.nextPageToken||'';
+  const g=document.getElementById('video-grid');g.innerHTML='';
+  const badge=document.createElement('div');badge.className='feed-badge';
+  badge.innerHTML=`&#127775; For You — <strong>${esc(q1)}</strong> &amp; <strong>${esc(q2)}</strong>`;
+  g.appendChild(badge);
+  all.forEach(item=>{if(item.id)appendCard(item,g,false,item._reason);});
+  if(nextPageToken){const lm=document.createElement('div');lm.className='load-more-wrap';lm.innerHTML=`<button class="load-more-btn" onclick="loadMore()">Load more</button>`;g.appendChild(lm);}
 }
 
 async function loadNewToYou(){
   showPage('page-home');
   document.getElementById('video-grid').innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
-  const watched=new Set(watchHistory.map(h=>h.channelId).filter(Boolean));
-  const topic=prefs.length?prefs[Math.floor(Math.random()*prefs.length)]:'interesting';
+  const profile=buildProfile();
+  const watched=new Set(Object.keys(profile.channelCount));
+  const topic=pickSmartQuery(profile);
   const data=await ytSearch(topic,24);
   if(data.error){document.getElementById('video-grid').innerHTML=`<div class="error-box">${esc(data.error)}</div>`;return;}
   const fresh=data.items.filter(i=>i.snippet?.channelId&&!watched.has(i.snippet.channelId)&&!isNI(i.id,i.snippet?.channelId));
   const g=document.getElementById('video-grid');g.innerHTML='';
-  const badge=document.createElement('div');badge.className='feed-badge';badge.innerHTML='&#128161; Fresh channels — based on <strong>'+esc(topic)+'</strong>';g.appendChild(badge);
+  const badge=document.createElement('div');badge.className='feed-badge';badge.innerHTML='&#128161; New to you — fresh channels in <strong>'+esc(topic)+'</strong>';g.appendChild(badge);
   (fresh.length?fresh:data.items).forEach(item=>{if(item.id)appendCard(item,g);});
+}
+
+// ═══════════════════════════════════════════════
+// PROFILE PAGE
+// ═══════════════════════════════════════════════
+async function showProfile(){
+  showPage('page-profile');
+  const profile=buildProfile();
+  const uname=currentUser?.username||'Viewer';
+  document.getElementById('prof-username').textContent=uname+"'s GoaTube Profile";
+  document.getElementById('prof-sub').textContent=`Built from ${watchHistory.length} watched video${watchHistory.length!==1?'s':''}`;
+
+  // Taste bars
+  const barsEl=document.getElementById('prof-taste-bars');
+  const emptyTaste=document.getElementById('prof-empty-taste');
+  if(!profile.topCats.length){barsEl.style.display='none';emptyTaste.style.display='block';}
+  else{
+    barsEl.style.display='block';emptyTaste.style.display='none';
+    barsEl.innerHTML=profile.topCats.map(({cat,pct})=>`
+      <div class="taste-bar-row">
+        <div class="taste-bar-label">${esc(cat)}</div>
+        <div class="taste-bar-track"><div class="taste-bar-fill" style="width:${pct}%"></div></div>
+        <div class="taste-bar-pct">${pct}%</div>
+      </div>`).join('');
+  }
+
+  // Top channels
+  const chEl=document.getElementById('prof-top-channels');
+  const emptyChEl=document.getElementById('prof-empty-channels');
+  if(!profile.topChannels.length){chEl.style.display='none';emptyChEl.style.display='block';}
+  else{
+    chEl.style.display='flex';emptyChEl.style.display='none';
+    chEl.innerHTML=profile.topChannels.map(ch=>{
+      const color=cc(ch.name);
+      return`<div class="prof-channel-pill" onclick="openChannel('${ch.id}','${esc(ch.name)}')">
+        <div class="prof-channel-av" style="background:${color}22;color:${color}">${ch.name[0].toUpperCase()}</div>
+        <div>
+          <div class="prof-channel-name">${esc(ch.name)}</div>
+          <div class="prof-channel-count">${ch.count} watch${ch.count!==1?'es':''}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Stats
+  const uniqueChannels=Object.keys(profile.channelCount).length;
+  const topCat=profile.topCats[0]?.cat||'—';
+  document.getElementById('prof-stats-grid').innerHTML=`
+    <div class="prof-stat-card"><div class="prof-stat-n" style="color:var(--accent)">${watchHistory.length}</div><div class="prof-stat-l">Videos watched</div></div>
+    <div class="prof-stat-card"><div class="prof-stat-n" style="color:var(--green)">${uniqueChannels}</div><div class="prof-stat-l">Unique channels</div></div>
+    <div class="prof-stat-card"><div class="prof-stat-n" style="color:var(--gold);font-size:14px">${esc(topCat)}</div><div class="prof-stat-l">Top category</div></div>
+    <div class="prof-stat-card"><div class="prof-stat-n" style="color:var(--red)">${connectedChannels.length}</div><div class="prof-stat-l">Followed channels</div></div>`;
+
+  // Recent
+  const recentEl=document.getElementById('prof-recent');
+  if(!watchHistory.length){recentEl.innerHTML='<div style="font-size:13px;color:var(--muted)">Nothing watched yet.</div>';}
+  else{
+    recentEl.innerHTML=watchHistory.slice(0,10).map(h=>`
+      <div class="recent-row" onclick="watchVideoById('${h.id}','${esc(h.title||'')}','${esc(h.channelId||'')}','${esc(h.channelName||'')}')">
+        <div class="recent-thumb"><img src="https://img.youtube.com/vi/${h.id}/mqdefault.jpg" loading="lazy"></div>
+        <div class="recent-info">
+          <div class="recent-title">${esc(h.title||h.id)}</div>
+          <div class="recent-meta">${esc(h.channelName||'')} ${h.cat?'· '+h.cat:''} · ${timeAgo(h.ts)}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  // Recommendations
+  loadProfileRecs();
+}
+
+async function loadProfileRecs(){
+  const g=document.getElementById('prof-recs-grid');
+  g.innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
+  const profile=buildProfile();
+  if(!profile.topCats.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted)">Watch some videos first!</div>';return;}
+  const q=pickSmartQuery(profile);
+  const data=await ytSearch(q+' popular',12);
+  if(data.error){g.innerHTML=`<div class="error-box">${esc(data.error)}</div>`;return;}
+  g.innerHTML='';
+  data.items.filter(i=>!isNI(i.id,i.snippet?.channelId)).forEach(item=>{if(item.id)appendCard(item,g,false,q);});
+}
+
+// Watch by ID (for recent history clicks)
+async function watchVideoById(id,title,channelId,channelName){
+  const item={id,snippet:{title,channelId,channelTitle:channelName,publishedAt:''},stats:{},duration:''};
+  watchVideo(item);
+}
+
+function clearHistory(){
+  if(!confirm('Reset your entire watch history and profile? This cannot be undone.'))return;
+  watchHistory=[];localStorage.removeItem('gt_hist');
+  showToast('Profile reset.');showProfile();
 }
 
 async function loadLive(){
   showPage('page-live');
   document.getElementById('live-grid').innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
   document.getElementById('live-count').textContent='Loading...';
-  const topic=prefs.length?prefs[Math.floor(Math.random()*prefs.length)]+' live':'live stream';
+  const profile=buildProfile();
+  const topic=pickSmartQuery(profile)+' live stream';
   const data=await ytLive(topic,24);
   if(data.error){document.getElementById('live-grid').innerHTML=`<div class="error-box">${esc(data.error)}</div>`;return;}
-  document.getElementById('live-count').textContent=data.items.length+' streams found';
+  document.getElementById('live-count').textContent=data.items.length+' live streams in your interests';
   const g=document.getElementById('live-grid');g.innerHTML='';
   data.items.forEach(item=>{if(item.id)appendCard(item,g,true);});
 }
@@ -1689,10 +1921,11 @@ async function loadMore(){
   nextPageToken=data.nextPageToken||'';renderGrid(data.items,true);
 }
 
-function appendCard(item,container,isLive=false){
+function appendCard(item,container,isLive=false,because=''){
   const sn=item.snippet||{},color=cc(sn.channelTitle),thumb=sn.thumbnails?.medium?.url||sn.thumbnails?.default?.url||'',views=fmtNum(item.stats?.viewCount);
   const div=document.createElement('div');div.className='video-card';div.style.transition='opacity 0.3s,transform 0.3s';
   div.onclick=()=>watchVideo(item);
+  const becauseBadge=because?`<div class="because-badge">&#127775; ${esc(because)}</div>`:'';
   div.innerHTML=`
     <div class="thumb-wrap">
       <img src="${thumb}" alt="${esc(sn.title)}" loading="lazy">
@@ -1707,6 +1940,7 @@ function appendCard(item,container,isLive=false){
         <div class="video-title">${esc(sn.title)}</div>
         <div class="video-channel" onclick="event.stopPropagation();openChannel('${sn.channelId||''}','${esc(sn.channelTitle||'')}')">${esc(sn.channelTitle||'')}</div>
         <div class="video-stats">${views?views+' views':''} ${views&&timeAgo(sn.publishedAt)&&!isLive?'&bull;':''} ${isLive?'<span style="color:var(--live);font-weight:600">Live now</span>':timeAgo(sn.publishedAt)}</div>
+        ${becauseBadge}
       </div>
     </div>`;
   container.appendChild(div);
@@ -1782,7 +2016,8 @@ async function goShorts(){
   showPage('page-shorts');
   const sc=document.getElementById('shorts-container');shortsQueue=[];
   sc.innerHTML=`<div class="short-slide"><div style="color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:14px;width:100%"><div class="spin"></div>Loading Shorts...</div></div>`;
-  const topic=prefs.length?prefs[Math.floor(Math.random()*prefs.length)]:'funny';
+  const profile=buildProfile();
+  const topic=pickSmartQuery(profile);
   const data=await ytSearch(topic+' #shorts',20,'',{videoDuration:'short'});
   if(data.error){sc.innerHTML=`<div class="short-slide"><div style="color:#ff8888">Error: ${esc(data.error)}</div></div>`;return;}
   shortsQueue=data.items.filter(i=>i.id);sc.innerHTML='';
@@ -1826,7 +2061,8 @@ async function goScroll(){
   showPage('page-scroll');
   const sc=document.getElementById('scroll-container');scrollQueue=[];
   sc.innerHTML=`<div class="scroll-slide" style="align-items:center;justify-content:center;flex-direction:column;gap:16px"><div class="spin"></div><span style="color:var(--muted)">Loading videos...</span></div>`;
-  const topic=prefs.length?prefs[Math.floor(Math.random()*prefs.length)]:'documentary';
+  const profile=buildProfile();
+  const topic=pickSmartQuery(profile);
   const data=await ytSearch(topic+' full video',10,'',{videoDuration:'long'});
   if(data.error){sc.innerHTML=`<div class="scroll-slide" style="color:#ff8888;align-items:center;justify-content:center">Error: ${esc(data.error)}</div>`;return;}
   scrollQueue=data.items.filter(i=>i.id);sc.innerHTML='';
@@ -1897,7 +2133,7 @@ async function watchVideo(item){
   const db=document.getElementById('desc-box');db.classList.add('desc-collapsed');document.getElementById('desc-tog').textContent='Show more';
   renderLocalComments(item.id);
   document.getElementById('watch-sidebar').innerHTML=`<div class="spinner"><div class="spin"></div></div>`;
-  if(sn.title){const e={id:item.id,title:sn.title,cat:currentCategory,channelId:sn.channelId,ts:Date.now()};watchHistory=[e,...watchHistory.filter(h=>h.id!==item.id)].slice(0,50);localStorage.setItem('gt_hist',JSON.stringify(watchHistory));}
+  if(sn.title){const e={id:item.id,title:sn.title,cat:currentCategory,channelId:sn.channelId,channelName:sn.channelTitle||'',ts:Date.now()};watchHistory=[e,...watchHistory.filter(h=>h.id!==item.id)].slice(0,100);localStorage.setItem('gt_hist',JSON.stringify(watchHistory));}
   window.scrollTo({top:0,behavior:'smooth'});
   const recs=await ytRelated(item.id);renderRecs(recs);
 }
@@ -2012,7 +2248,7 @@ function goHome(){
 }
 
 function showPage(id){
-  ['page-setup','page-home','page-games','page-live','page-channel','page-shorts','page-scroll','page-watch','page-search'].forEach(p=>{const el=document.getElementById(p);if(el)el.style.display=p===id?'block':'none';});
+  ['page-setup','page-home','page-games','page-live','page-channel','page-shorts','page-scroll','page-watch','page-search','page-profile'].forEach(p=>{const el=document.getElementById(p);if(el)el.style.display=p===id?'block':'none';});
   if(id!=='page-watch')document.getElementById('yt-player').src='about:blank';
   if(id!=='page-shorts'&&id!=='page-scroll'){if(slideObserver){slideObserver.disconnect();slideObserver=null;}}
   // Clean up game loops when leaving
