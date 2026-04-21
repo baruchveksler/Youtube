@@ -100,38 +100,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
 .refresh-btn:hover{border-color:var(--accent);color:var(--text)}
 
 /* RIMON MODAL */
-#rimon-modal .modal{width:520px;background:linear-gradient(135deg,var(--bg2),#1a0a0a)}
-.rimon-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.rimon-pomegranate{font-size:42px}
-.rimon-title{font-size:22px;font-weight:800;background:linear-gradient(90deg,#ff2d2d,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;direction:rtl}
-.rimon-subtitle{font-size:13px;color:var(--muted)}
-.rimon-status{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13px}
-.rimon-status.checking{background:rgba(255,200,0,0.1);border:1px solid rgba(255,200,0,0.2);color:#ffcc00}
-.rimon-status.online{background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.2);color:var(--green)}
-.rimon-status.offline{background:rgba(255,45,45,0.08);border:1px solid rgba(255,45,45,0.2);color:#ff8888}
-.rimon-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.rimon-dot.checking{background:#ffcc00;animation:pulse2 1s infinite}
-.rimon-dot.online{background:var(--green)}
-.rimon-dot.offline{background:#ff4444}
+#rimon-modal .modal{width:560px;background:linear-gradient(135deg,var(--bg2),#120808)}
+.rimon-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.rimon-pomegranate{font-size:44px;flex-shrink:0}
+.rimon-title{font-size:24px;font-weight:800;background:linear-gradient(90deg,#ff2d2d,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;direction:rtl}
+.rimon-subtitle{font-size:13px;color:var(--muted);margin-top:3px}
+.rimon-lang-row{display:flex;gap:8px;margin-bottom:18px}
+.rimon-lang-btn{flex:1;padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:14px;cursor:pointer;transition:all 0.15s;font-weight:500}
+.rimon-lang-btn.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+.rimon-lang-btn:hover:not(.active){border-color:var(--accent);color:var(--text)}
+.rimon-section{display:none}
+.rimon-section.active{display:block}
+.rimon-step-block{background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;border-left:3px solid var(--red)}
+.rimon-step-block.green{border-left-color:var(--green)}
+.rimon-step-block.blue{border-left-color:var(--accent)}
+.rimon-step-block.gold{border-left-color:var(--gold)}
+.rimon-step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.rimon-step-body{font-size:13px;color:var(--muted);line-height:1.6}
+.rimon-step-body strong{color:var(--text)}
+.rimon-code{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:9px 12px;font-family:monospace;font-size:12px;color:var(--accent);position:relative;margin:8px 0;overflow-x:auto;white-space:nowrap;padding-right:70px}
+.rimon-copy-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:3px 8px;border-radius:4px;cursor:pointer;white-space:nowrap}
+.rimon-copy-btn:hover{color:var(--text);border-color:var(--accent)}
+.rimon-note-box{background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.6;margin-top:16px}
+.rimon-note-box strong{color:var(--accent)}
 @keyframes pulse2{0%,100%{opacity:1}50%{opacity:0.4}}
-.rimon-setup{background:var(--bg3);border-radius:var(--radius);padding:16px;margin-bottom:14px}
-.rimon-setup-title{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text)}
-.rimon-step{display:flex;gap:10px;margin-bottom:10px;font-size:13px;color:var(--muted);align-items:flex-start}
-.rimon-step-n{width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.rimon-code{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-family:monospace;font-size:12px;color:var(--accent);position:relative;margin:8px 0;overflow-x:auto;white-space:nowrap}
-.rimon-copy-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:3px 8px;border-radius:4px;cursor:pointer}
-.rimon-copy-btn:hover{color:var(--text)}
-.rimon-progress{margin-bottom:14px;display:none}
-.rimon-prog-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin:8px 0}
-.rimon-prog-fill{height:100%;background:linear-gradient(90deg,var(--red),#ff8c00);border-radius:2px;width:0%;transition:width 0.3s}
-.rimon-prog-label{font-size:12px;color:var(--muted)}
-.rimon-player-wrap{display:none;margin-bottom:14px}
-.rimon-player-wrap video{width:100%;border-radius:var(--radius-sm);background:#000}
-.rimon-quality-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
-.rimon-q-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:13px;cursor:pointer;transition:all 0.15s}
-.rimon-q-btn:hover{border-color:var(--accent);color:var(--text)}
-.rimon-q-btn.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
-.rimon-note{font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
 
 /* GAMES PAGE */
 #page-games{padding:0}
@@ -687,8 +679,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
 
 <!-- RIMON MODAL -->
 <div class="modal-bg" id="rimon-modal">
-  <div class="modal" style="width:520px;max-width:95vw">
+  <div class="modal" style="width:560px;max-width:95vw;max-height:90vh;overflow-y:auto">
     <button class="modal-close" onclick="document.getElementById('rimon-modal').classList.remove('open')">&#10005;</button>
+
     <div class="rimon-header">
       <div class="rimon-pomegranate">&#127815;</div>
       <div>
@@ -697,86 +690,106 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,0.9
       </div>
     </div>
 
-    <div class="rimon-status checking" id="rimon-status">
-      <div class="rimon-dot checking" id="rimon-dot"></div>
-      <span id="rimon-status-text">Checking for רימון server...</span>
+    <!-- Language toggle -->
+    <div class="rimon-lang-row">
+      <button class="rimon-lang-btn active" onclick="setRimonLang('en',this)">&#127482;&#127480; English</button>
+      <button class="rimon-lang-btn" onclick="setRimonLang('he',this)">&#127470;&#127473; עברית</button>
     </div>
 
-    <!-- Offline: setup instructions -->
-    <div id="rimon-offline-section">
-      <div class="rimon-setup">
-        <div class="rimon-setup-title">&#128295; One-time setup — run this on your computer</div>
-        <div class="rimon-step"><div class="rimon-step-n">1</div><div>Install yt-dlp: <div class="rimon-code">pip install yt-dlp flask flask-cors<button class="rimon-copy-btn" onclick="copyCode('pip install yt-dlp flask flask-cors')">Copy</button></div></div></div>
-        <div class="rimon-step"><div class="rimon-step-n">2</div><div>Save this as <strong>rimon.py</strong> on your Desktop:<div class="rimon-code" style="white-space:pre;overflow-x:auto;font-size:11px">from flask import Flask,request,jsonify,send_file
-from flask_cors import CORS
-import yt_dlp,os,tempfile,threading
-app=Flask(__name__)
-CORS(app)
-jobs={}
+    <!-- ENGLISH -->
+    <div class="rimon-section active" id="rimon-en">
 
-@app.route('/status')
-def status():return jsonify({'ok':True,'name':'rimon'})
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">
+        רימון uses <strong style="color:var(--text)">yt-dlp</strong> — the best free video downloader — to grab this video directly to your computer. No ads, no tracking, yours forever. One-time setup, then it's just one command every time.
+      </div>
 
-@app.route('/download',methods=['POST'])
-def download():
-  data=request.json
-  url=data.get('url')
-  quality=data.get('quality','720')
-  jid=url[-11:]
-  jobs[jid]={'status':'downloading','pct':0}
-  def run():
-    with tempfile.TemporaryDirectory() as td:
-      def hook(d):
-        if d['status']=='downloading':
-          pct=d.get('_percent_str','0%').strip().replace('%','')
-          try:jobs[jid]['pct']=float(pct)
-          except:pass
-      ydl_opts={'format':f'bestvideo[height<={quality}]+bestaudio/best[height<={quality}]','outtmpl':td+'/%(id)s.%(ext)s','progress_hooks':[hook],'merge_output_format':'mp4'}
-      with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info=ydl.extract_info(url,download=True)
-        fname=ydl.prepare_filename(info).replace('.webm','.mp4').replace('.mkv','.mp4')
-        jobs[jid]={'status':'done','file':fname,'title':info.get('title','')}
-  threading.Thread(target=run,daemon=True).start()
-  return jsonify({'job_id':jid})
+      <div class="rimon-step-block">
+        <div class="rimon-step-title">&#9312; Install yt-dlp</div>
+        <div class="rimon-step-body">Open <strong>Command Prompt</strong> (search it in Start menu) and run:</div>
+        <div class="rimon-code">winget install yt-dlp<button class="rimon-copy-btn" onclick="copyCode('winget install yt-dlp')">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:4px">No winget? Download <strong>yt-dlp.exe</strong> directly from <a href="https://github.com/yt-dlp/yt-dlp/releases/latest" target="_blank" style="color:var(--accent)">github.com/yt-dlp/yt-dlp/releases</a> and put it in your Downloads folder.</div>
+      </div>
 
-@app.route('/progress/<jid>')
-def progress(jid):return jsonify(jobs.get(jid,{'status':'unknown'}))
+      <div class="rimon-step-block blue">
+        <div class="rimon-step-title">&#9313; Install Node.js <span style="font-size:11px;font-weight:400;color:var(--muted)">(prevents extraction errors)</span></div>
+        <div class="rimon-step-body">Required to avoid YouTube extraction warnings:</div>
+        <div class="rimon-code">winget install OpenJS.NodeJS.LTS<button class="rimon-copy-btn" onclick="copyCode('winget install OpenJS.NodeJS.LTS')">Copy</button></div>
+      </div>
 
-@app.route('/file/<jid>')
-def file(jid):
-  j=jobs.get(jid,{})
-  if j.get('status')=='done':return send_file(j['file'],mimetype='video/mp4')
-  return jsonify({'error':'not ready'}),404
+      <div class="rimon-step-block gold">
+        <div class="rimon-step-title">&#9314; Install ffmpeg <span style="font-size:11px;font-weight:400;color:var(--muted)">(required for 1080p and above)</span></div>
+        <div class="rimon-step-body">Without ffmpeg you're limited to 720p. With it you get 1080p, 4K, and best audio:</div>
+        <div class="rimon-code">winget install ffmpeg<button class="rimon-copy-btn" onclick="copyCode('winget install ffmpeg')">Copy</button></div>
+      </div>
 
-app.run(port=7842)
-<button class="rimon-copy-btn" style="top:8px" onclick="copyRimonPy()">Copy</button></div></div></div>
-        <div class="rimon-step"><div class="rimon-step-n">3</div><div>Run it: <div class="rimon-code">python rimon.py<button class="rimon-copy-btn" onclick="copyCode('python rimon.py')">Copy</button></div></div></div>
-        <div class="rimon-step"><div class="rimon-step-n">4</div><div>Come back here and click the button below — it connects automatically</div></div>
-        <button class="game-btn" onclick="checkRimonServer()" style="width:100%;margin-top:8px">&#8635; Check again</button>
+      <div class="rimon-step-block green">
+        <div class="rimon-step-title">&#9315; Verify everything is installed</div>
+        <div class="rimon-step-body"><strong>Restart your terminal</strong>, then check each one:</div>
+        <div class="rimon-code">node -v<button class="rimon-copy-btn" onclick="copyCode('node -v')">Copy</button></div>
+        <div class="rimon-code">ffmpeg -version<button class="rimon-copy-btn" onclick="copyCode('ffmpeg -version')">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:4px">Both should print a version number. If they do, you're ready.</div>
+      </div>
+
+      <div class="rimon-step-block" style="border-left-color:var(--red)">
+        <div class="rimon-step-title">&#9316; Download this video</div>
+        <div class="rimon-step-body">Run this command — replace the URL with the one below:</div>
+        <div class="rimon-code" id="rimon-cmd-en" style="padding-right:70px;white-space:nowrap;overflow-x:auto">yt-dlp --js-runtimes node "https://youtube.com/watch?v=VIDEO_ID"<button class="rimon-copy-btn" onclick="copyRimonCmd()">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:6px">For <strong>MP4 format</strong> (instead of WebM), add the format flag:</div>
+        <div class="rimon-code" id="rimon-cmd-mp4-en" style="padding-right:70px;white-space:nowrap;overflow-x:auto">yt-dlp --js-runtimes node -f "bv[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "https://youtube.com/watch?v=VIDEO_ID"<button class="rimon-copy-btn" onclick="copyRimonCmdMp4()">Copy</button></div>
+      </div>
+
+      <div class="rimon-note-box">
+        <strong>That's it.</strong> Once installed, you only ever need the <code style="color:var(--accent);font-size:12px">yt-dlp</code> command. It downloads to whatever folder your terminal is currently in. Files are yours — no DRM, play them in VLC or any video player.
       </div>
     </div>
 
-    <!-- Online: quality picker + player -->
-    <div id="rimon-online-section" style="display:none">
-      <div style="font-size:13px;font-weight:600;margin-bottom:8px">Select quality:</div>
-      <div class="rimon-quality-row">
-        <button class="rimon-q-btn" onclick="selectRimonQ(this,'360')">360p</button>
-        <button class="rimon-q-btn" onclick="selectRimonQ(this,'480')">480p</button>
-        <button class="rimon-q-btn active" onclick="selectRimonQ(this,'720')">720p HD</button>
-        <button class="rimon-q-btn" onclick="selectRimonQ(this,'1080')">1080p Full HD</button>
-        <button class="rimon-q-btn" onclick="selectRimonQ(this,'2160')">4K</button>
+    <!-- HEBREW -->
+    <div class="rimon-section" id="rimon-he" style="direction:rtl;text-align:right">
+
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">
+        רימון משתמש ב־<strong style="color:var(--text)">yt-dlp</strong> — המוריד הטוב ביותר בחינם — כדי להוריד את הסרטון ישירות למחשב שלך. בלי פרסומות, בלי מעקב, שלך לתמיד. הגדרה חד פעמית, ואז רק פקודה אחת בכל פעם.
       </div>
-      <button class="game-btn" id="rimon-start-btn" onclick="startRimonDownload()" style="width:100%;margin-bottom:12px">&#127815; Play with רימון</button>
-      <div class="rimon-progress" id="rimon-progress">
-        <div class="rimon-prog-label" id="rimon-prog-label">Downloading...</div>
-        <div class="rimon-prog-bar"><div class="rimon-prog-fill" id="rimon-prog-fill"></div></div>
+
+      <div class="rimon-step-block">
+        <div class="rimon-step-title">&#9312; התקן את yt-dlp</div>
+        <div class="rimon-step-body">פתח <strong>שורת פקודה</strong> (חפש "Command Prompt" בתפריט Start) והרץ:</div>
+        <div class="rimon-code" style="direction:ltr;text-align:left">winget install yt-dlp<button class="rimon-copy-btn" onclick="copyCode('winget install yt-dlp')">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:4px">אין winget? הורד את <strong>yt-dlp.exe</strong> ישירות מ־<a href="https://github.com/yt-dlp/yt-dlp/releases/latest" target="_blank" style="color:var(--accent)">github.com/yt-dlp/yt-dlp/releases</a> ושים אותו בתיקיית Downloads.</div>
       </div>
-      <div class="rimon-player-wrap" id="rimon-player-wrap">
-        <video id="rimon-video" controls style="width:100%;border-radius:var(--radius-sm);background:#000"></video>
+
+      <div class="rimon-step-block blue">
+        <div class="rimon-step-title">&#9313; התקן Node.js <span style="font-size:11px;font-weight:400;color:var(--muted)">(מונע שגיאות חילוץ)</span></div>
+        <div class="rimon-step-body">נדרש כדי למנוע אזהרות של YouTube:</div>
+        <div class="rimon-code" style="direction:ltr;text-align:left">winget install OpenJS.NodeJS.LTS<button class="rimon-copy-btn" onclick="copyCode('winget install OpenJS.NodeJS.LTS')">Copy</button></div>
+      </div>
+
+      <div class="rimon-step-block gold">
+        <div class="rimon-step-title">&#9314; התקן ffmpeg <span style="font-size:11px;font-weight:400;color:var(--muted)">(חובה ל־1080p ומעלה)</span></div>
+        <div class="rimon-step-body">בלי ffmpeg אתה מוגבל ל־720p. עם ffmpeg תקבל 1080p, 4K ואודיו מיטבי:</div>
+        <div class="rimon-code" style="direction:ltr;text-align:left">winget install ffmpeg<button class="rimon-copy-btn" onclick="copyCode('winget install ffmpeg')">Copy</button></div>
+      </div>
+
+      <div class="rimon-step-block green">
+        <div class="rimon-step-title">&#9315; בדוק שהכל מותקן</div>
+        <div class="rimon-step-body"><strong>הפעל מחדש את שורת הפקודה</strong>, ואז בדוק:</div>
+        <div class="rimon-code" style="direction:ltr;text-align:left">node -v<button class="rimon-copy-btn" onclick="copyCode('node -v')">Copy</button></div>
+        <div class="rimon-code" style="direction:ltr;text-align:left">ffmpeg -version<button class="rimon-copy-btn" onclick="copyCode('ffmpeg -version')">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:4px">שתיהן אמורות להציג מספר גרסה. אם כן — אתה מוכן.</div>
+      </div>
+
+      <div class="rimon-step-block" style="border-left-color:var(--red)">
+        <div class="rimon-step-title">&#9316; הורד את הסרטון הזה</div>
+        <div class="rimon-step-body">הרץ את הפקודה הזו — הקישור כבר מוכן:</div>
+        <div class="rimon-code" id="rimon-cmd-he" style="direction:ltr;text-align:left;padding-right:70px;white-space:nowrap;overflow-x:auto">yt-dlp --js-runtimes node "https://youtube.com/watch?v=VIDEO_ID"<button class="rimon-copy-btn" onclick="copyRimonCmd()">Copy</button></div>
+        <div class="rimon-step-body" style="margin-top:6px">לקובץ <strong>MP4</strong> (במקום WebM), הוסף את הדגל:</div>
+        <div class="rimon-code" id="rimon-cmd-mp4-he" style="direction:ltr;text-align:left;padding-right:70px;white-space:nowrap;overflow-x:auto">yt-dlp --js-runtimes node -f "bv[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "https://youtube.com/watch?v=VIDEO_ID"<button class="rimon-copy-btn" onclick="copyRimonCmdMp4()">Copy</button></div>
+      </div>
+
+      <div class="rimon-note-box" style="direction:rtl;text-align:right">
+        <strong>זהו.</strong> אחרי ההתקנה, אתה צריך רק את הפקודה <code style="color:var(--accent);font-size:12px">yt-dlp</code>. הקבצים יורדים לתיקייה שבה שורת הפקודה נמצאת כרגע. הם שלך — ללא DRM, פתח אותם ב־VLC או בכל נגן וידאו.
       </div>
     </div>
 
-    <div class="rimon-note">&#127815; רימון downloads videos directly via yt-dlp running on your computer — no YouTube player, no ads, no tracking. Plays as a native HTML5 video.</div>
   </div>
 </div>
 
@@ -836,137 +849,50 @@ function setupSlideObserver(el){
 // ═══════════════════════════════════════════════
 // רימון SYSTEM
 // ═══════════════════════════════════════════════
-async function openRimon(vid,title){
+function openRimon(vid,title){
   rimonVideoId=vid||currentVideo?.id||'';
-  document.getElementById('rimon-vid-name').textContent=(title||currentVideo?.snippet?.title||rimonVideoId).slice(0,60);
+  const t=(title||currentVideo?.snippet?.title||rimonVideoId).slice(0,60);
+  document.getElementById('rimon-vid-name').textContent=t;
+  // Set the actual YouTube URL in the command blocks
+  const url=`https://www.youtube.com/watch?v=${rimonVideoId}`;
+  const baseCmd=`yt-dlp --js-runtimes node "${url}"`;
+  const mp4Cmd=`yt-dlp --js-runtimes node -f "bv[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "${url}"`;
+  ['rimon-cmd-en','rimon-cmd-he'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      const btn=el.querySelector('.rimon-copy-btn');
+      el.textContent=baseCmd;
+      if(btn)el.appendChild(btn);
+    }
+  });
+  ['rimon-cmd-mp4-en','rimon-cmd-mp4-he'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      const btn=el.querySelector('.rimon-copy-btn');
+      el.textContent=mp4Cmd;
+      if(btn)el.appendChild(btn);
+    }
+  });
   document.getElementById('rimon-modal').classList.add('open');
-  document.getElementById('rimon-online-section').style.display='none';
-  document.getElementById('rimon-offline-section').style.display='block';
-  document.getElementById('rimon-player-wrap').style.display='none';
-  document.getElementById('rimon-progress').style.display='none';
-  document.getElementById('rimon-video').src='';
-  checkRimonServer();
 }
 
-async function checkRimonServer(){
-  setRimonStatus('checking','Checking for רימון server...');
-  try{
-    const r=await fetch(`http://localhost:${RIMON_PORT}/status`,{signal:AbortSignal.timeout(2000)});
-    const d=await r.json();
-    if(d.ok){
-      setRimonStatus('online','&#9989; רימון is running — ready to play!');
-      document.getElementById('rimon-offline-section').style.display='none';
-      document.getElementById('rimon-online-section').style.display='block';
-    } else throw new Error();
-  }catch(e){
-    setRimonStatus('offline','&#10060; Server not running — follow setup steps below');
-    document.getElementById('rimon-offline-section').style.display='block';
-    document.getElementById('rimon-online-section').style.display='none';
-  }
-}
-
-function setRimonStatus(state,text){
-  const el=document.getElementById('rimon-status');
-  const dot=document.getElementById('rimon-dot');
-  const txt=document.getElementById('rimon-status-text');
-  el.className='rimon-status '+state;
-  dot.className='rimon-dot '+state;
-  txt.innerHTML=text;
-}
-
-function selectRimonQ(btn,q){
-  rimonQuality=q;
-  document.querySelectorAll('.rimon-q-btn').forEach(b=>b.classList.remove('active'));
+function setRimonLang(lang,btn){
+  document.querySelectorAll('.rimon-lang-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  document.querySelectorAll('.rimon-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('rimon-'+lang).classList.add('active');
 }
 
-async function startRimonDownload(){
-  if(!rimonVideoId){showToast('No video selected');return;}
-  const url='https://www.youtube.com/watch?v='+rimonVideoId;
-  document.getElementById('rimon-progress').style.display='block';
-  document.getElementById('rimon-start-btn').disabled=true;
-  document.getElementById('rimon-prog-fill').style.width='0%';
-  document.getElementById('rimon-prog-label').textContent='Starting download...';
-  try{
-    const r=await fetch(`http://localhost:${RIMON_PORT}/download`,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({url,quality:rimonQuality})
-    });
-    const d=await r.json();
-    const jobId=d.job_id;
-    pollRimonJob(jobId);
-  }catch(e){
-    showToast('Could not connect to רימון server');
-    document.getElementById('rimon-start-btn').disabled=false;
-  }
+function copyRimonCmd(){
+  const url=`https://www.youtube.com/watch?v=${rimonVideoId}`;
+  navigator.clipboard.writeText(`yt-dlp --js-runtimes node "${url}"`).then(()=>showToast('Command copied!'));
 }
 
-async function pollRimonJob(jobId){
-  const interval=setInterval(async()=>{
-    try{
-      const r=await fetch(`http://localhost:${RIMON_PORT}/progress/${jobId}`);
-      const d=await r.json();
-      const pct=Math.round(d.pct||0);
-      document.getElementById('rimon-prog-fill').style.width=pct+'%';
-      document.getElementById('rimon-prog-label').textContent=d.status==='done'?'Done!':'Downloading... '+pct+'%';
-      if(d.status==='done'){
-        clearInterval(interval);
-        document.getElementById('rimon-progress').style.display='none';
-        document.getElementById('rimon-player-wrap').style.display='block';
-        document.getElementById('rimon-start-btn').disabled=false;
-        const vid=document.getElementById('rimon-video');
-        vid.src=`http://localhost:${RIMON_PORT}/file/${jobId}`;
-        vid.play();
-      }
-    }catch(e){clearInterval(interval);}
-  },800);
+function copyRimonCmdMp4(){
+  const url=`https://www.youtube.com/watch?v=${rimonVideoId}`;
+  navigator.clipboard.writeText(`yt-dlp --js-runtimes node -f "bv[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "${url}"`).then(()=>showToast('MP4 command copied!'));
 }
 
-function copyRimonPy(){
-  const code=`from flask import Flask,request,jsonify,send_file
-from flask_cors import CORS
-import yt_dlp,os,tempfile,threading
-app=Flask(__name__)
-CORS(app)
-jobs={}
-
-@app.route('/status')
-def status():return jsonify({'ok':True,'name':'rimon'})
-
-@app.route('/download',methods=['POST'])
-def download():
-  data=request.json
-  url=data.get('url')
-  quality=data.get('quality','720')
-  jid=url[-11:]
-  jobs[jid]={'status':'downloading','pct':0}
-  def run():
-    with tempfile.TemporaryDirectory() as td:
-      def hook(d):
-        if d['status']=='downloading':
-          pct=d.get('_percent_str','0%').strip().replace('%','')
-          try:jobs[jid]['pct']=float(pct)
-          except:pass
-      ydl_opts={'format':f'bestvideo[height<={quality}]+bestaudio/best[height<={quality}]','outtmpl':td+'/%(id)s.%(ext)s','progress_hooks':[hook],'merge_output_format':'mp4'}
-      with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info=ydl.extract_info(url,download=True)
-        fname=ydl.prepare_filename(info).replace('.webm','.mp4').replace('.mkv','.mp4')
-        jobs[jid]={'status':'done','file':fname,'title':info.get('title','')}
-  threading.Thread(target=run,daemon=True).start()
-  return jsonify({'job_id':jid})
-
-@app.route('/progress/<jid>')
-def progress(jid):return jsonify(jobs.get(jid,{'status':'unknown'}))
-
-@app.route('/file/<jid>')
-def file(jid):
-  j=jobs.get(jid,{})
-  if j.get('status')=='done':return send_file(j['file'],mimetype='video/mp4')
-  return jsonify({'error':'not ready'}),404
-
-app.run(port=7842)`;
-  navigator.clipboard.writeText(code).then(()=>showToast('rimon.py copied! Paste it into a file called rimon.py'));
-}
 function copyCode(txt){navigator.clipboard.writeText(txt).then(()=>showToast('Copied!'));}
 
 document.getElementById('rimon-modal').addEventListener('click',e=>{if(e.target===document.getElementById('rimon-modal'))document.getElementById('rimon-modal').classList.remove('open');});
